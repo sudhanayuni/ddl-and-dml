@@ -1,0 +1,255 @@
+create database sudha;
+Query OK, 1 row affected (0.21 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sudha              |
+| sys                |
++--------------------+
+6 rows in set (0.10 sec)
+
+mysql> use sudha;
+Database changed
+mysql> create table student(userid int,sname varchar(200),sname varchar(200),gmail varchar(200),Number int,address varchar(100));
+ERROR 1060 (42S21): Duplicate column name 'sname'
+mysql> create table student(userid int,sname varchar(200),gmail varchar(200),Number int,address varchar(100));
+Query OK, 0 rows affected (2.06 sec)
+describe studnet;
+ERROR 1146 (42S02): Table 'sudha.studnet' doesn't exist
+mysql> describe student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| userid  | int          | YES  |     | NULL    |       |
+| sname   | varchar(200) | YES  |     | NULL    |       |
+| gmail   | varchar(200) | YES  |     | NULL    |       |
+| Number  | int          | YES  |     | NULL    |       |
+| address | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.38 sec)
+ alter table student modify sname varchar(150);
+Query OK, 0 rows affected (3.20 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  describe student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| userid  | int          | YES  |     | NULL    |       |
+| sname   | varchar(150) | YES  |     | NULL    |       |
+| gmail   | varchar(200) | YES  |     | NULL    |       |
+| Number  | int          | YES  |     | NULL    |       |
+| address | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.11 sec)
+
+mysql> select * from table student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student' at line 1
+mysql> select * from student;
+Empty set (0.00 sec)
+mysql> alter table student add column branch_id varchar(20);
+Query OK, 0 rows affected (1.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe stuent;
+ERROR 1146 (42S02): Table 'sudha.stuent' doesn't exist
+mysql> describe student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| userid    | int          | YES  |     | NULL    |       |
+| sname     | varchar(150) | YES  |     | NULL    |       |
+| gmail     | varchar(200) | YES  |     | NULL    |       |
+| Number    | int          | YES  |     | NULL    |       |
+| address   | varchar(100) | YES  |     | NULL    |       |
+| branch_id | varchar(20)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+6 rows in set (0.15 sec)
+
+mysql> insert into student(userid,sname,gmail,number,address,branch_id)values(1,'sudha','nayunisudha@gmail.com',98,'abc','cse');
+Query OK, 1 row affected (0.23 sec)
+
+mysql>  insert into student(userid,sname,gmail,number,address,branch_id)values(1,'sai','rachana@gmail.com',99,'cde','ece');
+Query OK, 1 row affected (0.21 sec)
+
+mysql>  insert into student(userid,sname,gmail,number,address,branch_id)values(1,'syedarfath','arafth@gmail.com',100,'fgh','ce');
+Query OK, 1 row affected (0.15 sec)
+
+mysql>  insert into student(userid,sname,gmail,number,address,branch_id)values(1,'madhu','madhavi@gmail.com',101,'ijk','me');
+Query OK, 1 row affected (0.20 sec)
+
+mysql> show stuent;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'stuent' at line 1
+mysql> show student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student' at line 1
+mysql> select * from student;
++--------+------------+-----------------------+--------+---------+-----------+
+| userid | sname      | gmail                 | Number | address | branch_id |
++--------+------------+-----------------------+--------+---------+-----------+
+|      1 | sudha      | nayunisudha@gmail.com |     98 | abc     | cse       |
+|      1 | sai        | rachana@gmail.com     |     99 | cde     | ece       |
+|      1 | syedarfath | arafth@gmail.com      |    100 | fgh     | ce        |
+|      1 | madhu      | madhavi@gmail.com     |    101 | ijk     | me        |
++--------+------------+-----------------------+--------+---------+-----------+
+4 rows in set (0.11 sec)
+
+mysql> select * from student where number=100;
++--------+------------+------------------+--------+---------+-----------+
+| userid | sname      | gmail            | Number | address | branch_id |
++--------+------------+------------------+--------+---------+-----------+
+|      1 | syedarfath | arafth@gmail.com |    100 | fgh     | ce        |
++--------+------------+------------------+--------+---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where number=101;
++--------+-------+-------------------+--------+---------+-----------+
+| userid | sname | gmail             | Number | address | branch_id |
++--------+-------+-------------------+--------+---------+-----------+
+|      1 | madhu | madhavi@gmail.com |    101 | ijk     | me        |
++--------+-------+-------------------+--------+---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where number=99;
++--------+-------+-------------------+--------+---------+-----------+
+| userid | sname | gmail             | Number | address | branch_id |
++--------+-------+-------------------+--------+---------+-----------+
+|      1 | sai   | rachana@gmail.com |     99 | cde     | ece       |
++--------+-------+-------------------+--------+---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where number=98
+    -> ;
++--------+-------+-----------------------+--------+---------+-----------+
+| userid | sname | gmail                 | Number | address | branch_id |
++--------+-------+-----------------------+--------+---------+-----------+
+|      1 | sudha | nayunisudha@gmail.com |     98 | abc     | cse       |
++--------+-------+-----------------------+--------+---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> alter table student change userid sno varchar(100);
+Query OK, 4 rows affected (2.94 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from stuent;
+ERROR 1146 (42S02): Table 'sudha.stuent' doesn't exist
+mysql> select * from student;
++------+------------+-----------------------+--------+---------+-----------+
+| sno  | sname      | gmail                 | Number | address | branch_id |
++------+------------+-----------------------+--------+---------+-----------+
+| 1    | sudha      | nayunisudha@gmail.com |     98 | abc     | cse       |
+| 1    | sai        | rachana@gmail.com     |     99 | cde     | ece       |
+| 1    | syedarfath | arafth@gmail.com      |    100 | fgh     | ce        |
+| 1    | madhu      | madhavi@gmail.com     |    101 | ijk     | me        |
++------+------------+-----------------------+--------+---------+-----------+
+4 rows in set (0.00 sec)
+update student set sno=0 where sname='sudha';
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update student set sno=1 where sname='sai';
+Query OK, 0 rows affected (0.04 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql>  update student set sno=2 where sname='syedarfath';
+Query OK, 1 row affected (0.21 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update student set sno=3 where sname='madhu';
+Query OK, 1 row affected (0.20 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> describe student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| sno       | varchar(100) | YES  |     | NULL    |       |
+| sname     | varchar(150) | YES  |     | NULL    |       |
+| gmail     | varchar(200) | YES  |     | NULL    |       |
+| Number    | int          | YES  |     | NULL    |       |
+| address   | varchar(100) | YES  |     | NULL    |       |
+| branch_id | varchar(20)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+6 rows in set (0.41 sec)
+
+mysql> select * from student;
++------+------------+-----------------------+--------+---------+-----------+
+| sno  | sname      | gmail                 | Number | address | branch_id |
++------+------------+-----------------------+--------+---------+-----------+
+| 0    | sudha      | nayunisudha@gmail.com |     98 | abc     | cse       |
+| 1    | sai        | rachana@gmail.com     |     99 | cde     | ece       |
+| 2    | syedarfath | arafth@gmail.com      |    100 | fgh     | ce        |
+| 3    | madhu      | madhavi@gmail.com     |    101 | ijk     | me        |
++------+------------+-----------------------+--------+---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> alter table student add column role varchar(100);
+Query OK, 0 rows affected (1.91 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+------------+-----------------------+--------+---------+-----------+------+
+| sno  | sname      | gmail                 | Number | address | branch_id | role |
++------+------------+-----------------------+--------+---------+-----------+------+
+| 0    | sudha      | nayunisudha@gmail.com |     98 | abc     | cse       | NULL |
+| 1    | sai        | rachana@gmail.com     |     99 | cde     | ece       | NULL |
+| 2    | syedarfath | arafth@gmail.com      |    100 | fgh     | ce        | NULL |
+| 3    | madhu      | madhavi@gmail.com     |    101 | ijk     | me        | NULL |
++------+------------+-----------------------+--------+---------+-----------+------+
+4 rows in set (0.12 sec)
+
+mysql> alter table student drop column role varchar(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(100)' at line 1
+mysql> alter table student drop column role;
+Query OK, 0 rows affected (1.79 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+------------+-----------------------+--------+---------+-----------+
+| sno  | sname      | gmail                 | Number | address | branch_id |
++------+------------+-----------------------+--------+---------+-----------+
+| 0    | sudha      | nayunisudha@gmail.com |     98 | abc     | cse       |
+| 1    | sai        | rachana@gmail.com     |     99 | cde     | ece       |
+| 2    | syedarfath | arafth@gmail.com      |    100 | fgh     | ce        |
+| 3    | madhu      | madhavi@gmail.com     |    101 | ijk     | me        |
++------+------------+-----------------------+--------+---------+-----------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
